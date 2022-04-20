@@ -1,6 +1,7 @@
 package com.talha.physicswallahassignment.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import com.talha.physicswallahassignment.R;
 import com.talha.physicswallahassignment.models.TeacherModel;
@@ -62,7 +64,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 h.name.setText(list.get(position).getName());
                 h.subQualif.setText(list.get(position).getSubjects().get(0)+" \u2022 "+list.get(position).getQualification().get(0));
                 h.viewMore.setOnClickListener(view -> {
-
+                    Snackbar.make(view, "This is "+list.get(position).getName(), Snackbar.LENGTH_LONG)
+                            .setBackgroundTint(view.getResources().getColor(R.color.primary_text_color, view.getResources().newTheme()))
+                            .setTextColor(view.getResources().getColor(R.color.white,view.getResources().newTheme()))
+                            .show();
                 });
                 Picasso.get().load(list.get(position).getProfileImage()).into(h.imageView);
                 break;
